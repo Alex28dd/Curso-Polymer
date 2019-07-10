@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Custom Elements</title>
+  </head>
+  <body>
+    <my-custom-element items="3"></my-custom-element>
+    <button class="addItem">Add Item</button>
+    <button class="removeItem">Remove Item</button>
+  </body>
+  <script>
+    class MyCustomElement extends HTMLElement {
+      constructor() {
+        super();
+
+        if(this.hasAttribute('items')) {
+          this.items = this.getAttribute('items');
+        }
+      }
+
+      static get observedAttributes() {
+        return ['items'];
+      }
+
+      attributeChangedCallback(name, oldValue, newValue) {
+        this.items = newValue;
+        this.printItems();
+      }
+
+      printItems() {
+        this.innerHTML = '';
+        for(let i = 0; i < this.items; i++) {
+          this.innerHTML += `<div>Diego</div>`;
+        }
+      }
+    }
+    window.customElements.define('my-custom-element', MyCustomElement);
+
+    const element = document.querySelector('my-custom-element');
+    const button = document.querySelector('.addItem');
+    const removeButton = document.querySelector('.removeItem');
+
+    button.addEventListener('click', () => {
+      let items = parseInt(element.getAttribute('items'));
+      element.setAttribute('items', items + 1);
+    })
+
+    removeButton.addEventListener('click', () => {
+      let items = parseInt(element.getAttribute('items'));
+      element.setAttribute('items', items - 1);
+    })
+  </script>
+</html>

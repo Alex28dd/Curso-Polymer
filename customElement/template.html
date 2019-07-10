@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Template</title>
+  </head>
+  <body>
+    <template id="MyTemplate" items="3">
+      <div>
+        Pintate por favor
+      </div>
+    </template>
+    <my-template></my-template>
+    <my-template></my-template>
+    <my-template></my-template>
+  </body>
+  <script>
+    class MyTemplate extends HTMLElement {
+      constructor() {
+        super();
+      }
+      connectedCallback() {
+        const template = document.querySelector('#MyTemplate');
+        const clone = template.content.cloneNode(true);
+        this.appendChild(clone);
+        // if(template.hasAttribute('items')) {
+        //   let lim = template.getAttribute('items');
+        //   for(let i = 0; i < Number(lim); i++){
+        //   }
+        // }
+      }
+    }
+    window.customElements.define('my-template', MyTemplate)
+  </script>
+</html>

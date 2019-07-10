@@ -1,3 +1,27 @@
+const userInput = document.getElementById('userName');
+const passwordInput = document.getElementById('userPassword');
+const btn = document.getElementById('loginBtn');
+
+
+
+btn.addEventListener('click', () => {
+  const inputUser = userInput.value;
+  const inputPass = passwordInput.value;
+
+  if(inputUser === 'diego' && inputPass === 'gutierrez'){
+    alert("Usuario y Contraseña Correctos");
+  }else {
+    alert("Usuario o Contraseña Incorrectos");
+  }
+});
+
+
+
+
+
+
+
+
 /*function myVar(array) {
   console.log(myVar);
 }
@@ -38,14 +62,14 @@ a(); //1*/
 
 
 
-function func(){
-  // this.name ='Juan';
-  const obj = {
-    name: 'Aldo',
-    getName: function()  {
-      return this.name;
-    }
-  };
-  console.log(obj.getName());
-}
- func();
+// function func(){
+//   // this.name ='Juan';
+//   const obj = {
+//     name: 'Aldo',
+//     getName: function()  {
+//       return this.name;
+//     }
+//   };
+//   console.log(obj.getName());
+// }
+//  func();

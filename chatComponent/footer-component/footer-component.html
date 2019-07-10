@@ -1,0 +1,109 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="footer-component">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .footer {
+        background: #F52C44;
+        color: #fff;
+        padding: 10px;
+        /* display: flex; */
+        width: 100%;
+        padding: 20px;
+      }
+      .input input {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      .input input[type="text"] {
+        border: none;
+        border-bottom: 1px solid #fff;
+        background: transparent;
+        outline: none;
+        height: 30px;
+        color: #fff;
+        font-size: 16px;
+      }
+      .button button {
+        width: 100%;
+        color: #4F5768;
+        border: none;
+        outline: none;
+        height: 30px;
+        background: #fff;
+        font-size: 20px;
+        border-radius: 50px;
+        transition-duration: 0.4s;
+      }
+      .button button:hover {
+        background-color: #fff;
+        border: 1px solid grey;
+        box-shadow:0 1px 1px rgba(0,0,0,0.1);
+        color:#333;
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+      }
+      .button button:active {
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+      }
+    </style>
+    <footer>
+      <dom-if if="[[!_validateView(status)]]">
+        <template>
+          <div class="footer">
+            <div class="input">
+              <input id="text" type="text" placeholder="Writes">
+            </div>
+            <div class="button">
+              <button on-click="_send">[[title]]</button>
+            </div>
+          </div>
+        </template>
+      </dom-if>
+    </footer>
+  </template>
+
+  <script>
+    /**
+     * `footer-component`
+     * Footer for Conata[Ciner Compontainer Componentnent
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class FooterComponent extends Polymer.Element {
+      static get is() { return 'footer-component'; }
+      static get properties() {
+        return {
+          title: {
+            type: String,
+            value: 'SEND'
+          },
+          status: {
+            type: Number,
+            value: 1
+          }
+        };
+      }
+      connectedCallback() {
+        super.connectedCallback();
+      }
+      _validateView(status) {
+        return status === 0;
+      }
+      _send() {
+        const classFooter = this.shadowRoot.querySelector('.footer');
+        const blue = classFooter.style.background = '#0840B9';
+        // const red = classFooter.style.background = '#F52C44';
+        //
+        // if(this.classFooter = this.status === 0 ? 'blue' : 'red');
+      }
+    }
+
+    window.customElements.define(FooterComponent.is, FooterComponent);
+  </script>
+</dom-module>

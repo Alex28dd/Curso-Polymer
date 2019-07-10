@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Shadow DOM</title>
+  </head>
+  <style>
+    div {
+      background-color: black;
+      color: yellow;
+
+    }
+  </style>
+  <body>
+    <div>jahshjahajdhd</div>
+    <my-shadow-dom></my-shadow-dom>
+  </body>
+  <script>
+    class MyShadowDom extends HTMLElement {
+      constructor() {
+        super();
+        const shadowRoot = this.attachShadow({mode: 'open'});
+        shadowRoot.innerHTML = `<div>Algo</div>`;
+      }
+      static get name() {
+        return `my-shadow-dom`;
+      }
+    }
+    window.customElements.define(MyShadowDom.name, MyShadowDom);
+  </script>
+  <script>
+    const el = document.querySelector('my-shadow-dom');
+    console.log(el.shadowRoot.querySelector('div'));
+  </script>
+</html>

@@ -1,0 +1,45 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="header-component">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      h2 {
+        background: #0840B9;
+        color: #fff;
+        padding: 10px;
+        font-size: 30px;
+        text-align: center;
+      }
+    </style>
+    <header>
+      <h2>Nuestro [[title]]!</h2>
+    </header>
+  </template>
+
+  <script>
+    /**
+     * `header-component`
+     * Header for Container Component
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class HeaderComponent extends Polymer.Element {
+      static get is() { return 'header-component'; }
+      static get properties() {
+        return {
+          title: {
+            type: String,
+            value: 'Chat Component'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(HeaderComponent.is, HeaderComponent);
+  </script>
+</dom-module>

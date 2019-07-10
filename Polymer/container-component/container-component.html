@@ -1,0 +1,60 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../card-component/card-component.html">
+
+<dom-module id="container-component">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * `container-component`
+     * Container of Personal Info Cards
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class ContainerComponent extends Polymer.Element {
+      static get is() { return 'container-component'; }
+      static get properties() {
+        return {
+          numberOfCards: {
+            type: Number,
+            value: 3
+          },
+          cards: {
+            type: Array,
+            value: [
+              {
+                name: 'A',
+                gender: 'female'
+              },
+              {
+                name: 'B',
+                gender: 'man'
+              }
+            ],
+          }
+        };
+      }
+      
+      connectedCallback() {
+        super.connectedCallback();
+        for(let i = 0; i < this.cards.length; i++) {
+            const div = document.createElement('card-component');
+            this.shadowRoot.appendChild(div);
+            div.name = this.cards[i].name;
+            div.gender = this.cards[i].gender;
+        }
+      }
+    }
+
+    window.customElements.define(ContainerComponent.is, ContainerComponent);
+  </script>
+</dom-module>

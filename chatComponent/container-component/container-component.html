@@ -1,0 +1,37 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../header-component/header-component.html">
+
+<dom-module id="container-component">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * `container-component`
+     * Container for Chat
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class ContainerComponent extends Polymer.Element {
+      static get is() { return 'container-component'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'container-component'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(ContainerComponent.is, ContainerComponent);
+  </script>
+</dom-module>

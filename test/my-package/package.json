@@ -1,0 +1,15 @@
+{
+  "name": "my-package",
+  "version": "0.0.1",
+  "description": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test": "jest --coverage"
+  },
+  "author": "Diego",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^24.8.0"
+  }
+}

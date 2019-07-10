@@ -1,0 +1,162 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="chat-component">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .chat-container {
+        padding: 10px;
+        width: 100%;
+        height: 450px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+      }
+      .chat-container::-webkit-scrollbar {
+        width: 10px;
+      }
+      .chat-container::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background: rgba(0,0,0,.1);
+      }
+      .chat-message {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: flip-start;
+        margin-bottom: 10px;
+      }
+      .chat-message .user-photo1 {
+        width: 60px;
+        height: 60px;
+        background: #F78492;
+        border-radius: 50%;
+      }
+      .chat-message .user-photo2 {
+        width: 60px;
+        height: 60px;
+        background: #F78492;
+        border-radius: 50%;
+        background: #397FC9;
+      }
+      .chat-message .message {
+        width: 70%;
+        padding: 15px;
+        margin: 5px 10px 0;
+        background: #F52C44;
+        border-radius: 10px;
+        color: #fff;
+        font-size: 12px;
+      }
+      .user1 .message {
+        background: #F52C44;
+      }
+      .user2 .message {
+        background: #0840B9;
+        order: -1;
+      }
+    </style>
+    <div class="chat-container">
+      <div class="chat-message user1">
+        <div class="user-photo1">
+
+        </div>
+        <p class="message">[[paraph]]</p>
+      </div>
+      <div class="chat-message user2">
+        <div class="user-photo2">
+
+        </div>
+        <p class="message">[[paraph2]]</p>
+      </div>
+      <div class="chat-message user1">
+        <div class="user-photo1">
+
+        </div>
+        <p class="message">[[paraph]]</p>
+      </div>
+      <div class="chat-message user2">
+        <div class="user-photo2">
+
+        </div>
+        <p class="message">[[paraph2]]</p>
+      </div>
+      <div class="chat-message user1">
+        <div class="user-photo1">
+
+        </div>
+        <p class="message">[[paraph]]</p>
+      </div>
+      <div class="chat-message user2">
+        <div class="user-photo2">
+
+        </div>
+        <p class="message">[[paraph2]]</p>
+      </div>
+      <div class="chat-message user1">
+        <div class="user-photo1">
+
+        </div>
+        <p class="message">[[paraph]]</p>
+      </div>
+      <div class="chat-message user2">
+        <div class="user-photo2">
+
+        </div>
+        <p class="message">[[paraph2]]</p>
+      </div>
+      <div class="chat-message user1">
+        <div class="user-photo1">
+
+        </div>
+        <p class="message">[[paraph]]</p>
+      </div>
+      <div class="chat-message user2">
+        <div class="user-photo2">
+
+        </div>
+        <p class="message">[[paraph2]]</p>
+      </div>
+      <div class="chat-message user1">
+        <div class="user-photo1">
+
+        </div>
+        <p class="message">[[paraph]]</p>
+      </div>
+      <div class="chat-message user2">
+        <div class="user-photo2">
+
+        </div>
+        <p class="message">[[paraph2]]</p>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    /**
+     * `chat-component`
+     * Chat for Container Component
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class ChatComponent extends Polymer.Element {
+      static get is() { return 'chat-component'; }
+      static get properties() {
+        return {
+          paraph: {
+            type: String,
+            value: 'Hello!!'
+          },
+          paraph2: {
+            type: String,
+            value:'What´s UP!!'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(ChatComponent.is, ChatComponent);
+  </script>
+</dom-module>

@@ -1,0 +1,44 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="carousel-component">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <div>
+      <div class="prev" on-click="_doPrev" role="button">
+        <img src="" alt="" width="[[v]]" height="[[h]]">
+      </div>
+      <div class="next" on-click="_doNext" role="button">
+
+      </div>
+    </div>
+
+  </template>
+
+  <script>
+    /**
+     * `carousel-component`
+     * Show images with a Carousel
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class CarouselComponent extends Polymer.Element {
+      static get is() { return 'carousel-component'; }
+      static get properties() {
+        return {
+          itemSelected: {
+            type: String,
+            value: 'carousel-component'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(CarouselComponent.is, CarouselComponent);
+  </script>
+</dom-module>

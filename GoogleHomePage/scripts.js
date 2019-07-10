@@ -10,4 +10,4 @@ searchBtn.addEventListener('click', () => {
 
 const redirect = (busqueda) => {
   window.location.assign(busqueda);
-}
+};

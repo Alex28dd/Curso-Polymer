@@ -1,0 +1,120 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="card-component">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      html, body {
+        font-size: 23px;
+      }
+      .card {
+        display: flex;
+        flex-direction: column;
+        background-color: #dddddd;
+        width: var(--card-width, 320px);
+        height: var(--card-height, 160px);
+        border-radius: 0.3rem;
+        margin: 0.7rem;
+        text-overflow: ellipsis;
+        text-wrap: normal;
+        box-shadow: 0px 0px 3px 1px #000000;
+        @apply --card-mixin;
+      }
+      .img {
+        border-top-right-radius: 0.3rem;
+        border-top-left-radius: 0.3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50%;
+        @apply --card-img-div;
+      }
+      .text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 50%;
+      }
+    </style>
+    <div hidden="[[_hideOrShow(gender)]]" class="card">
+      <div class="img">
+        <img src="[[imgGender]]" width="50" alt="Aquí habia una imagen jajaja saludos">
+      </div>
+      <div class="text">
+        <span id="name" class="[[_computeClass(name)]]">[[fullName]]</span>
+        <span id="age">[[age]]</span>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    /**
+     * `card-component`
+     * Card of User Prile
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class CardComponent extends Polymer.Element {
+      static get is() { return 'card-component'; }
+      static get observers() {
+        return[
+        'userNameChanged(name, last)'
+        ]
+      }
+      userNameChanged(name, last) {
+        console.log(name);
+        console.log(last);
+      }
+      _hideOrShow(gender) {
+        return gender ===  'female';
+      }
+      _generateImgFromGender(gender) {
+        return gender === 'female' ? `../woman.png` : `../man.png`;
+      }
+      _generateFullName(name, last) {
+        return `${name} ${last}`;
+      }
+      constructor() {
+        super();
+      }
+      static get properties() {
+        return {
+          hide: {
+            type: Boolean,
+            value: false
+          },
+          fullName: {
+            type: String,
+            computed: '_generateFullName(name,last)'
+          },
+          last: {
+            type: String,
+            value: 'Gutierrez',
+            observer: '_lasChanged'
+          },
+          name: {
+            type: 'String',
+            value: 'Diego',
+            observer: '_nameChanged'
+          },
+          age: {
+            type: Number,
+            value: 22
+          },
+          imgGender: {
+            type: String,
+            computed: '_generateImgFromGender(gender)'
+          },
+          gender: String
+        };
+      }
+    }
+
+    window.customElements.define(CardComponent.is, CardComponent);
+  </script>
+</dom-module>

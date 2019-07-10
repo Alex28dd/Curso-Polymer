@@ -1,0 +1,176 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer/lib/elements/dom-if.html">
+<link rel="import" href="bower_components/paper-input/paper-input.html">
+
+<dom-module id="login-component">
+  <template>
+    <style>
+      :host {
+      display: block;
+      width: 320px;
+      height: 420px;
+      background-color: silver;
+      color: #fff;
+      top: 40%;
+      left: 40%;
+      position: absolute;
+      /* transform: translate(-50%, -50%); */
+      box-sizing: border-box;
+      padding: 70px 30px;
+      border-radius: 20px;
+      }
+      h1 {
+      margin: 0;
+      padding: 0 0 20px;
+      color: #4F5768;
+      text-align: center;
+      font-size: 22px;
+      }
+      label {
+      margin:0;
+      padding: 0;
+      font-weight: bold;
+      color: #4F5768;
+      display: block;
+      }
+      input {
+      width: 100%;
+      margin-bottom: 20px;
+      }
+      input[type="text"],
+      input[type="password"] {
+      border: none;
+      border-bottom: 1px solid #fff;
+      background: transparent;
+      outline: none;
+      height: 30px;
+      color: #4F5768;
+      font-size: 16px;
+      }
+      button {
+      width: 100%;
+      color: #4F5768;
+      border: none;
+      outline: none;
+      height: 30px;
+      background: #fff;
+      font-size: 20px;
+      border-radius: 50px;
+      transition-duration: 0.4s;
+      }
+      button:hover {
+        background-color: #fff;
+        border: 1px solid grey;
+        box-shadow:0 1px 1px rgba(0,0,0,0.1);
+        color:#333;
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+      }
+      button:active {
+      box-shadow: 0 5px #666;
+      transform: translateY(4px);
+      }
+
+    </style>
+    <h1>[[title]]</h1>
+    <section id="login-card" role="form">
+      <div class="card">
+        <h1>[[subtile]]</h1>
+        <label for="user-name">User Name</label>
+        <input id="user" type="text" placeholder="User Name">
+        <paper-input></paper-input>
+        <label for="user-password">Password</label>
+        <input id="user-password" type="password" placeholder="Password">
+        <dom-if if="[[!_validateView(status)]]">
+          <template>
+            <label for="user-password">Confirm Password</label>
+            <input id="confirm" type="password" placeholder="Confirm Password">
+        </template>
+      </dom-if>
+      </div>
+      <div id="[[title]]">
+        <dom-if if="[[_validateView(status)]]">
+          <template>
+          <button on-click="_doLogin">LOGIN</button>
+          </template>
+          </dom-if>
+        <dom-if if="[[!_validateView(status)]]">
+          <template>
+            <button on-click="_doRegister">SEND</button>
+          </template>
+        </dom-if>
+      </div>
+    </section>
+  </template>
+
+  <script>
+    /**
+     * `login-component`
+     * Login of Users
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class LoginComponent extends Polymer.Element {
+      static get is() { return 'login-component'; }
+      static get properties() {
+        return {
+          // register: {
+          //   type: Boolean,
+          //   value: false
+          // },
+          title: {
+            type: String,
+            value: 'Register'
+          },
+          subtile: {
+            type: String,
+            value: ''
+          },
+          status: {
+            type: Number,
+            value: 1 //0: register || 1: login
+          },
+          user: {
+            type: Object,
+            value: {}
+          }
+        };
+      }
+      connectedCallback() {
+        super.connectedCallback();
+      }
+      _validateView(status) {
+        return status === 0;
+      }
+      _doRegister() {
+        const user = this.shadowRoot.querySelector('#user').value;
+        const userPass = this.shadowRoot.querySelector('#user-password').value;
+        const confirm = this.shadowRoot.querySelector('#confirm').value;
+
+        if(userPass === confirm) {
+          this.status = 0;
+          this.title = this.status === 0 ? 'Login' : 'Register';
+          this.set('user', {
+            username: user,
+            userpassword: userPass
+          });
+          this.shadowRoot.querySelector('#user').value = '';
+          this.shadowRoot.querySelector('#user-password').value = '';
+        }
+      }
+      _doLogin() {
+        const user = this.shadowRoot.querySelector('#user').value;
+        const userPass = this.shadowRoot.querySelector('#user-password').value;
+
+        if(user === this.user.username && userPass === this.user.userpassword) {
+          alert('Login Success');
+          return;
+        }
+        alert('Login Error');
+      }
+    }
+
+    window.customElements.define(LoginComponent.is, LoginComponent);
+  </script>
+</dom-module>

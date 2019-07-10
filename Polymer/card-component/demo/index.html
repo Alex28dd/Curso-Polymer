@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>card-component demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../card-component.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+        html, body {
+          font-size: 23px;
+        }
+        card-component {
+          --card-img-div {
+            width: 100%;
+            background-color: white;
+          };
+        }
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic card-component demo</h3>
+      <demo-snippet>
+        <template>
+          <card-component gender="female" name="b"></card-component>
+          <card-component gender="" name="c"></card-component>
+          <card-component gender="" name="d"></card-component>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>

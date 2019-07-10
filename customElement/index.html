@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <title>Custom Element</title>
+  </head>
+  <body>
+    <my-custom-element items="3">
+      <!-- <b class="diego">Diego</b> -->
+      <!-- <b class="diego">Diego</b>
+      <b class="diego">Diego</b>
+      <b class="diego">Diego</b> -->
+    </my-custom-element>
+    <button class="addItem">Add Item</button>
+    <!-- <dom-for items="3">
+      <h1>ashhdkjhkh</h1>
+    </dom-for> -->
+  </body>
+  <script>
+    // document.addEventListener('my-custom-event',callback);
+    // function callback(event) {
+    //   console.log('Escuche el evento', event.type);
+    // }
+
+    class MyCustomElement extends HTMLElement {
+      constructor() {
+        super();
+        this.name = 'Diego';
+        // const slot = this.childNodes[1];
+        // console.log(slot);
+        // this.dispatchEvent(new CustomEvent('my-custom-event', {
+        //   bubbles: true,
+        //   composed: true,
+        //   detail: this.name
+        // }))
+        // if(this.hasAttribute('si')) {
+        //   const si = this.getAttribute('si');
+        //
+        // }
+
+        if(this.hasAttribute('items')) {
+          this.items = this.getAttribute('items');
+          // this.innerHTML = template;
+        }
+      }
+
+    }
+    window.customElements.define('my-custom-element', MyCustomElement);
+
+
+  </script>
+</html>

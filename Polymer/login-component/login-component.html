@@ -1,0 +1,63 @@
+<link rel="import" href="../login-component/bower_components/polymer-element.html">
+
+<dom-module id="login-component">
+  <template>
+    <style>
+      :host {
+        display: block;
+        background-color: var(--login-back-color, black);
+        color: var(--login-color, white);
+      }
+
+
+    </style>
+    <form>
+      <div class="">
+        <button on-click="_changeTitle">[[title]]</button>
+      </div>
+      <div on-input-event="_callback">
+        <h1>[[subTitle]]</h1>
+        <input id="user" type="text" value="{{val::input}}" placeholder="User">
+        <input id="password" type="password" placeholder="Password">
+      </div>
+    </form>
+  </template>
+
+  <script>
+    /**
+     * `login-component`
+     * Component of Users Login
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class LoginComponent extends Polymer.Element {
+      static get is() { return 'login-component'; }
+      static get properties() {
+        return {
+          register: {
+            type: Boolean,
+            value: false
+          },
+          title: {
+            type: String,
+            value: 'Register'
+          },
+          subTitle: {
+            type: String,
+            value: 'Login'
+          }
+        };
+      }
+    }
+
+    changeTitle(event) {
+      this.register = this.subTilte === 'Register';
+      this.title = this.tilte === 'Login' ? 'Register' : 'Login';
+      this.subTitle = this.subTilte === 'Login' ? 'Register' : 'Login';
+    }
+
+    window.customElements.define(LoginComponent.is, LoginComponent);
+  </script>
+</dom-module>
